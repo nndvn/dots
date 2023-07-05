@@ -1,0 +1,17 @@
+#!{{ lookPath "sh" }}
+
+# templates
+{{ template "helpers" . }}
+{{ template "sudo" . }}
+
+bot "run_once_after_00-configure-system.sh"
+running "checking system platform"
+{{ if (eq .chezmoi.os "linux") }}
+	ok "linux platform"
+{{ else if (eq .chezmoi.os "darwin") }}
+	ok "macos platform"
+    {{ template "macos" . }}
+{{ else }}
+    fail "platform not supported"
+	exit 0
+{{ end }}

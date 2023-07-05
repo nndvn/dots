@@ -1,0 +1,18 @@
+#!{{ lookPath "sh" }}
+
+# templates
+{{ template "helpers" . }}
+
+bot "run_onchange_after_00-install-packages.sh"
+running "checking system platform"
+{{ if (eq .chezmoi.os "linux") }}
+	ok "linux platform"
+    running "installing packages"
+{{ else if (eq .chezmoi.os "darwin") }}
+	ok "macos platform"
+    running "installing packages"
+    brew bundle install --no-upgrade --cleanup --no-lock
+{{ else }}
+    fail "platform not supported"
+	exit 0
+{{ end }}

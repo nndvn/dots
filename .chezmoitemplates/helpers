@@ -1,0 +1,51 @@
+BASE="\033["
+RESET="${BASE}0m"  # reset
+# color-mode
+LIGHT="${BASE}1m" # lighter than normal
+DARK="${BASE}2m" # darker than normal
+# text-mode
+ITALIC="${BASE}3m"   # italic
+UNDERLINE="${BASE}4m"   # underline
+BLINKING_SLOW="${BASE}5m" # blinking (slow)
+BLINKING_FAST="${BASE}6m" # blinking (fast)
+REVERSE="${BASE}7m"   # reverse
+HIDE="${BASE}8m"   # hide
+CROSS_OUT="${BASE}9m"   # cross-out
+# foreground
+BLACK="${BASE}30m"
+RED="${BASE}31m"
+GREEN="${BASE}32m"
+YELLOW="${BASE}33m"
+BLUE="${BASE}34m"
+PURPLE="${BASE}35m"
+CYAN="${BASE}36m"
+WHITE="${BASE}37m"
+# background
+BG_BLACK="${BASE}40m"
+BG_RED="${BASE}41m"
+BG_GREEN="${BASE}42m"
+BG_YELLOW="${BASE}43m"
+BG_BLUE="${BASE}44m"
+BG_PURPLE="${BASE}45m"
+BG_CYAN="${BASE}46m"
+BG_WHITE="${BASE}47m"
+
+bot () {
+	echo "\n$BLUE\[._.]/$RESET - "$1
+}
+
+running () {
+	echo "\n$PURPLE ⇒ $RESET"$1"..."
+}
+
+warn () {
+	echo "$YELLOW[warning]$RESET "$1
+}
+
+ok () {
+	echo "$GREEN[ok]$RESET "$1
+}
+
+fail () {
+	echo "$RED[fail]$RESET "$1
+}

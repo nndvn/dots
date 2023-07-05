@@ -1,0 +1,113 @@
+# ~/.macos — https://mths.be/macos
+
+running "macos set defaults"
+
+# pre-flight checks
+running "closing any system preferences panes, to prevent them from overriding changes"
+killall "System Preferences"
+
+# set computer name
+# system preferences - sharing
+running "set computer name"
+sudo scutil --set ComputerName
+# sudo scutil --set HostName
+sudo scutil --set LocalHostName
+
+# dock
+# system preferences - dock & menu bar - size
+# default: 60
+# slider:
+#   - 16-128
+running "system preferences - dock & menu bar - size"
+defaults write com.apple.dock tilesize -int 48
+# system preferences - dock & menu bar - magnification
+# default: unchecked, 128
+# options:
+#   - unchecked: false
+#   - checked: true
+# slider:
+#   - 16-128
+running "system preferences - dock & menu bar - magnification"
+defaults write com.apple.dock magnification -bool true
+defaults write com.apple.dock largesize -int 64
+# system preferences - dock & menu bar - minimize windows using
+# options:
+#   - cenie effect: genie
+#   - scale effect: scale
+# default: genie effect
+running "system preferences - dock & menu bar - minimize windows using"
+defaults write com.apple.dock mineffect -string "genie"
+# system preferences - dock & menu bar - show recent applications in dock
+# options:
+#   - unchecked: false
+#   - checked: true
+# default: checked
+running "system preferences - dock & menu bar - show recent applications in dock"
+defaults write com.apple.dock show-recents -bool false
+# system preferences - dock & menu bar - automatically hide and show the dock
+# options:
+#   - unchecked: false
+#   - checked: true
+# default: unchecked
+running "system preferences - dock & menu bar - show recent applications in dock"
+defaults write com.apple.dock autohide -bool true
+# wipe all default app icons
+running "wipe all default app icons"
+defaults write com.apple.dock persistent-apps -array
+# restart dock
+killall Dock
+ok "done"
+
+# finder
+# finder - preferences - general
+# options:
+#   - unchecked: false
+#   - checked: true
+running "finder - preferences - general - show these items on the desktop"
+# hard disks
+# default: unchecked
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+# external disks
+# default: checked
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
+# CDs, DVDs, and iPods
+# default: checked
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
+# connected servers
+# default: unchecked
+defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
+# show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+# restart finder
+killall Finder
+ok "done"
+
+# software update
+# options:
+#   - unchecked: false
+#   - checked: true
+# default: checked
+# system preferences - software update - advanced - check for updates
+running "system preferences - software update - advanced - check for updates"
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+# system preferences - software update - advanced - download new updates when available
+running "system preferences - software update - advanced - download new updates when available"
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticDownload -bool true
+# system preferences - software update - advanced - install macos updates
+running "system preferences - software update - advanced - install macos updates"
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate AutomaticallyInstallMacOSUpdates -bool true
+# system preferences - software update - advanced - install app updates from the App Store
+running "system preferences - software update - advanced - install app updates from the App Store"
+sudo defaults write /Library/Preferences/com.apple.commerce AutoUpdate -bool true
+# system preferences - software update - advanced - install system data files and security updates
+running "system preferences - software update - advanced - install system data files and security updates"
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate ConfigDataInstall -bool true
+sudo defaults write /Library/Preferences/com.apple.SoftwareUpdate CriticalUpdateInstall -bool true
+ok "done"
+
+# safari
+# https://github.com/blthazr/dotfiles/blob/f68b343b901ae190a053af582223011c3483b78f/home/.chezmoiscripts/darwin/run_onchange_after_99-safari.sh.tmpl
+
+# finished
+ok "finished setting macos defaults"
+warn "note that some of these changes require a logout/restart to take effect"

@@ -1,0 +1,10 @@
+running "looking for homebrew"
+if [[ $(command -v brew) ]]; then
+	ok "homebrew already installed"
+else
+	warn "homebrew not found"
+	running "installing homebrew"
+	{{ lookPath "sh" }} -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	ok "homebrew successfully installed"
+fi
+brew cleanup && brew update && brew upgrade

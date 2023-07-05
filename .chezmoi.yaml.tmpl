@@ -1,0 +1,13 @@
+{{- $name := promptStringOnce . "name" "full name" "NND" -}}
+{{- $email := promptStringOnce . "email" "email address" "d@nnd.vn" -}}
+{{- $key := promptStringOnce . "key" "key id" "0xB040C05D2D83A283" -}}
+
+data:
+    name: {{ $name | quote }}
+    email: {{ $email | quote }}
+    key: {{ $key | quote }}
+
+encryption: "gpg"
+
+gpg:
+    recipient: {{ $key | quote }}
