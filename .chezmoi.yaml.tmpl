@@ -11,6 +11,8 @@ encryption: "gpg"
 
 gpg:
     recipient: {{ $key | quote }}
+    args:
+    - "--quiet"
 
 git:
     autoCommit: true
