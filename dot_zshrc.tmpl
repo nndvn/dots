@@ -116,7 +116,8 @@ export LC_TYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Docker rootless mode
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+# [BUG] https://docs.docker.com/engine/security/rootless/#known-limitations
+# export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 {{ end -}}
 
 {{ if (eq .chezmoi.os "darwin") -}}
