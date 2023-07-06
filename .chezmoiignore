@@ -1,9 +1,9 @@
 README.md
 
-{{- if eq .chezmoi.os "linux" }}
+{{ if eq .chezmoi.os "linux" }}
 Brewfile
 random.txt
-{{- end }}
+{{ end -}}
 
-{{- if eq .chezmoi.os "darwin" }}
-{{- end }}
+{{ if eq .chezmoi.os "darwin" }}
+{{ end }}

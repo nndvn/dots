@@ -109,6 +109,9 @@ fi
 # linux #
 #########
 
+# [FIX] perl: warning: Setting locale failed.
+export LANGUAGE=en_US.UTF-8
+
 # Docker rootless mode
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 {{ end -}}
