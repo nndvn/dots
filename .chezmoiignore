@@ -2,6 +2,7 @@ README.md
 
 {{- if eq .chezmoi.os "linux" }}
 Brewfile
+random.txt
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
