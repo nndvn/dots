@@ -2,7 +2,6 @@
 
 # templates
 {{ template "helpers" . }}
-{{ template "sudo" . }}
 
 bot "run_once_after_00-configure-system.sh"
 running "checking system platform"
@@ -10,6 +9,7 @@ running "checking system platform"
 	ok "linux platform"
 {{ else if (eq .chezmoi.os "darwin") }}
 	ok "macos platform"
+	{{ template "sudo" . }}
     {{ template "macos" . }}
 {{ else }}
     fail "platform not supported"
