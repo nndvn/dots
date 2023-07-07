@@ -76,6 +76,13 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
+{{ if (eq .chezmoi.os "linux") -}}
+# [FIX] [oh-my-zsh] Insecure completion-dependent directories detected:
+# https://osxdaily.com/2021/12/29/fix-oh-my-zsh-insecure-completion-dependent-directories-detected/
+# https://stackoverflow.com/questions/61433167/zsh-detects-insecure-completion-dependent-directories
+ZSH_DISABLE_COMPFIX=true
+{{ end -}}
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
