@@ -1,6 +1,7 @@
 README.md
 
 {{ if eq .chezmoi.os "linux" }}
+.ssh/config
 Brewfile
 random.txt
 {{ end -}}
