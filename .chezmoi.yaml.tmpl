@@ -1,0 +1,25 @@
+{{/* user information */}}
+{{- $name := (default "NND" (promptString "full name" "NND")) -}}
+{{- $email := (default "d@nnd.vn" (promptString "email address" "d@nnd.vn")) -}}
+{{- $key := (default "0x16704DD694D8A2CD" (promptString "gpg key id" "0x16704DD694D8A2CD")) -}}
+{{- $backup := (promptString "backup media" "/path/to/backup/media") -}}
+
+{{/* boolean feature tags */}}
+{{/* $headless := false -*/}}
+
+encryption: "gpg"
+
+gpg:
+  recipient: {{ $key | quote }}
+  args: ["--quiet"]
+
+git:
+    autoCommit: true
+    autoPush: false
+
+data:
+  name: {{ $name | quote }}
+  email: {{ $email | quote }}
+
+scriptEnv:
+    BACKUP_MEDIA: {{ $backup | quote }}

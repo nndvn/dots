@@ -1,0 +1,12 @@
+[init]
+	defaultBranch = main
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+	signingkey = {{ .chezmoi.config.gpg.recipient }}
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[gpg]
+	program = /usr/local/bin/gpg

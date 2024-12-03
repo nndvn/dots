@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "00-bootstrap.sh"
+
+echo "checking system platform"
+{{ if (eq .chezmoi.os "darwin") }}
+    echo "darwin platform"
+    # sudo softwareupdate -i -a > /dev/null
+{{ else if (eq .chezmoi.os "linux") }}
+    echo "linux platform"
+    # sudo apt autoremove && sudo apt update && sudo apt upgrade -y
+{{ else }}
+    echo "platform not supported"
+    exit 0
+{{ end }}
