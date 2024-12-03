@@ -9,7 +9,8 @@ echo "run_once_after_configure-defaults.sh"
 # closing any system preferences panes, to prevent them from overriding changes
 # killall "System Preferences"
 # killall "System Settings"
-osascript -e 'tell application "System Settings" to quit'
+osascript -e 'tell application "System Preferences" to quit'
+# osascript -e 'tell application "System Settings" to quit'
 
 # set computer name, hostname, local hostname
 # sudo scutil --set ComputerName
