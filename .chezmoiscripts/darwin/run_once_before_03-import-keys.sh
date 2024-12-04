@@ -9,7 +9,7 @@ if [[ $(gpg --card-status) ]]; then
 
     echo "importing public key"
     PUBLIC_KEY_URL=$(gpg --card-status 2>/dev/null | grep 'URL of public key' | sed 's/URL of public key : //g')
-    # curl -s $PUBLIC_KEY_URL | gpg --import
+    curl -s $PUBLIC_KEY_URL | gpg --import
     echo $PUBLIC_KEY_URL
 
     echo "list keys on the yubikey"
