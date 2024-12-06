@@ -17,5 +17,8 @@ else
     fi
 fi
 
-# creating personal folders
-# mkdir -p $HOME/Developer
+echo "creating personal folders"
+folders=("Developer" "Projects" "Test")
+for folder in "${folders[@]}"; do
+    mkdir -p $HOME/$folder
+done
