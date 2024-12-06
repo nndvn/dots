@@ -3,7 +3,6 @@
 # https://macos-defaults.com
 
 set -eufo pipefail
-
 echo "run_once_after_configure-defaults.sh"
 
 # pre-flight checks

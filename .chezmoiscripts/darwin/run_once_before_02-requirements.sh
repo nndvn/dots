@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -eufo pipefail
-echo "run_once_before_02-install-requirements.sh"
+echo "run_once_before_02-requirements.sh"
 
 echo "installing requirements"
 brew cleanup && brew update && brew upgrade

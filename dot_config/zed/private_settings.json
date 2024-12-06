@@ -14,7 +14,9 @@
     },
     "version": "2"
   },
+  "ui_font_family": "Noto Sans",
   "ui_font_size": 18,
+  "buffer_font_family": "Noto Sans Mono",
   "buffer_font_size": 18,
   "theme": {
     "mode": "system",

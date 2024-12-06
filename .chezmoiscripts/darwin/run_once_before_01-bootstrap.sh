@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -eufo pipefail
-echo "run_once_before_01-homebrew.sh"
+echo "run_once_before_01-bootstrap.sh"
 
 sudo softwareupdate -i -a
 
