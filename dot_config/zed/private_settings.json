@@ -24,9 +24,10 @@
     "dark": "Flexoki Dark"
   },
   "auto_install_extensions": {
-    "html": true,
+    "astro": true,
     "biome": true,
     "flexoki-themes": true,
+    "html": true,
     "vue": true
   }
 }
