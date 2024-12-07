@@ -9,8 +9,10 @@ echo "run_once_after_configure-defaults.sh"
 # closing any system preferences panes, to prevent them from overriding changes
 # killall "System Preferences"
 # killall "System Settings"
+# in macos ventura and later
+osascript -e 'tell application "System Settings" to quit'
+# in macos monterey and earlier
 osascript -e 'tell application "System Preferences" to quit'
-# osascript -e 'tell application "System Settings" to quit'
 
 # set computer name, hostname, local hostname
 # sudo scutil --set ComputerName
@@ -22,11 +24,11 @@ defaults write com.apple.dock tilesize -int 69
 defaults write com.apple.dock magnification -bool true
 # defaults write com.apple.dock largesize -int 128
 defaults write com.apple.dock mineffect -string "genie"
-# defaults write com.apple.dock show-recents -bool false
+defaults write com.apple.dock show-recents -bool false
 defaults write com.apple.dock autohide -bool false
 defaults write com.apple.dock autohide-delay -float 0
 # defaults write com.apple.dock autohide-time-modifier -float 2
-# defaults write com.apple.dock persistent-apps -array # wipe all default app icons
+defaults write com.apple.dock persistent-apps -array # wipe all default app icons
 killall Dock
 
 # finder
