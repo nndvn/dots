@@ -85,6 +85,11 @@ else
 fi
 # export VISUAL="$EDITOR"
 
+{{ if (eq .chezmoi.os "darwin") -}}
+#########
+# macos #
+#########
+
 # aliases
 alias moi="chezmoi"
 alias neo="neofetch"
@@ -124,3 +129,10 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+{{ end -}}
+
+{{ if (eq .chezmoi.os "linux") -}}
+##########
+# linux #
+#########
+{{ end -}}
