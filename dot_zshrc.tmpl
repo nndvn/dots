@@ -85,15 +85,16 @@ else
 fi
 # export VISUAL="$EDITOR"
 
+# aliases
+alias moi="chezmoi"
+alias neo="neofetch"
+alias clr="clear"
+
 {{ if (eq .chezmoi.os "darwin") -}}
 #########
 # macos #
 #########
 
-# aliases
-alias moi="chezmoi"
-alias neo="neofetch"
-alias clr="clear"
 # function aliases
 brew_add() {
     brew i $1 $2
