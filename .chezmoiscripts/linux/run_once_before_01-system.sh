@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eufo pipefail
 echo "run_once_before_01-system.sh"
