@@ -4,6 +4,7 @@
 .brew-aliases
 .config/zed
 .gnupg/**
+.wrap
 {{ end -}}
 
 {{ if ne .chezmoi.os "linux" -}}
