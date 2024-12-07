@@ -91,10 +91,6 @@ alias neo="neofetch"
 alias clr="clear"
 
 {{ if (eq .chezmoi.os "darwin") -}}
-#########
-# macos #
-#########
-
 # function aliases
 brew_add() {
     brew i $1 $2
@@ -133,7 +129,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 {{ end -}}
 
 {{ if (eq .chezmoi.os "linux") -}}
-##########
-# linux #
-#########
+
+# linux
+
 {{ end -}}
