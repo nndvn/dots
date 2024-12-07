@@ -9,7 +9,6 @@
 
 {{ if ne .chezmoi.os "linux" -}}
 .chezmoiscripts/linux/**
-sshd_config
 {{ end -}}
 
 install.sh
