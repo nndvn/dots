@@ -14,6 +14,7 @@ else
     sudo ufw default deny incoming
     sudo ufw default allow outgoing
     sudo ufw allow in on tailscale0
-    # sudo ufw limit in 22369/tcp
+    # sudo ufw limit in 22/tcp
+    sudo ufw limit from 192.168.12.0/24 to any port 22 proto tcp
     sudo ufw reload
 fi
