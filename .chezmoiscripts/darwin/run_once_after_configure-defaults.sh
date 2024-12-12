@@ -33,6 +33,7 @@ killall Dock
 
 # finder
 defaults write com.apple.finder AppleShowAllFiles -bool true
+# defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
 # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 # defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
