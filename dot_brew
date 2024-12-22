@@ -1,6 +1,5 @@
 tap "homebrew/aliases"
 tap "homebrew/bundle"
-brew "chezmoi"
 brew "git"
 brew "gnupg"
 brew "pass"
