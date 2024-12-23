@@ -95,12 +95,12 @@ alias clr="clear"
 brew_add() {
     brew i $1 $2
     brew bundle dump --force
-    chezmoi re-add ~/.brew
+    chezmoi re-add ~/.brewfile
 }
 brew_del() {
     brew rm $1 $2
     brew bundle dump --force
-    chezmoi re-add ~/.brew
+    chezmoi re-add ~/.brewfile
 }
 
 # enable SSH access using a GPG key for authentication
@@ -118,7 +118,7 @@ gpgconf --launch gpg-agent
 gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # homebrew
-export HOMEBREW_BUNDLE_FILE=$HOME/.brew
+export HOMEBREW_BUNDLE_FILE=$HOME/.brewfile
 # export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 

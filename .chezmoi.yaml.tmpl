@@ -3,6 +3,7 @@
 {{- $email := (default "d@nnd.vn" (promptString "email address" "d@nnd.vn")) -}}
 {{- $key := (default "0x16704DD694D8A2CD" (promptString "gpg key id" "0x16704DD694D8A2CD")) -}}
 {{- $backup := (promptString "backup media" "/path/to/backup/media") -}}
+{{- $device := (default "NND DEVICE 0X" (promptString "device name" "NND DEVICE 0X")) -}}
 
 {{/* boolean feature tags */}}
 {{/* $headless := false -*/}}
@@ -20,6 +21,8 @@ git:
 data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
+  key: {{ $key | quote }}
 
 scriptEnv:
     BACKUP_MEDIA: {{ $backup | quote }}
+    DEVICE_NAME: {{ $device | quote }}
