@@ -3,7 +3,8 @@
 set -eufo pipefail
 echo "run_once_before_01-homebrew.sh"
 
-sudo softwareupdate -i -a
+# sudo softwareupdate -i -a
+xcode-select --install || echo "xcode cli already installed"
 
 # echo "looking for xcode cli"
 # xcode-select -p &>/dev/null
