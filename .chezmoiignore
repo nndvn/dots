@@ -1,10 +1,11 @@
 {{ if ne .chezmoi.os "darwin" -}}
 .chezmoiscripts/darwin/**
-.brew
+.brewfile
 .brew-aliases
 .config/zed
 .gnupg/**
 .warp
+.gitconfig
 {{ end -}}
 
 {{ if ne .chezmoi.os "linux" -}}
