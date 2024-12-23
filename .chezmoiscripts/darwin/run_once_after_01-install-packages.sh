@@ -9,7 +9,7 @@ if [ -f .brewfile ]; then
   # install packages using brew bundle
   # brew bundle install
   # brew bundle install --no-lock > /dev/null
-  brew bundle install --no-lock
+  brew bundle install --no-lock --file=~/.brewfile
 else
   echo "no .brewfile found"
 fi
