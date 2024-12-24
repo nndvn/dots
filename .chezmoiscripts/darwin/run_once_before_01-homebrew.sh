@@ -3,8 +3,6 @@
 set -eufo pipefail
 echo "run_once_before_01-homebrew.sh"
 
-xcode-select --install
-
 echo "looking for homebrew"
 if [ $(command -v brew) ]; then
 	echo "homebrew already installed: $(brew --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
