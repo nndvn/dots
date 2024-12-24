@@ -20,9 +20,9 @@ sudo scutil --set LocalHostName $(echo "$DEVICE_NAME" | tr ' ' '-')
 sudo scutil --set HostName $(echo "$DEVICE_NAME.local" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
 
 # dock
-defaults write com.apple.dock "tilesize" -int "69"
-# defaults write com.apple.dock "magnification" -bool "true"
-# defaults write com.apple.dock "largesize" -int "128"
+defaults write com.apple.dock "tilesize" -int "64"
+defaults write com.apple.dock "magnification" -bool "true"
+defaults write com.apple.dock "largesize" -int "128"
 # defaults write com.apple.dock "mineffect" -string "genie"
 defaults write com.apple.dock "mineffect" -string "suck"
 defaults write com.apple.dock "show-recents" -bool "false"

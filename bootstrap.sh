@@ -13,7 +13,7 @@ Darwin)
     else
     	echo "homebrew not found, installing homebrew"
         # sudo softwareupdate --install --all
-        sudo softwareupdate --install-rosetta --agree-to-license
+        # sudo softwareupdate --install-rosetta --agree-to-license
         # xcode-select --install
     	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo >> $HOME/.zprofile

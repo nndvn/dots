@@ -53,7 +53,7 @@ else
         gpg --import "$BACKUP_MEDIA/gpg/$KEY_ID.ssb.asc"
     else
         echo "$BACKUP_MEDIA/gpg does not exist, exit"
-        exit 0
+        # exit 0
     fi
 fi
 
@@ -67,12 +67,12 @@ else
         pass
     else
         echo "$BACKUP_MEDIA/repos/pwds does not exist, exit"
-        exit 0
+        # exit 0
     fi
 fi
 
 echo "creating personal folders"
-folders=("Developer" "Projects" "Test")
+folders=("Developer" "Projects")
 for folder in "${folders[@]}"; do
     mkdir -p $HOME/$folder
 done
