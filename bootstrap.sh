@@ -7,15 +7,18 @@ set -eu
 case "$(uname -s)" in
 Darwin)
     echo "darwin platform"
-    sudo softwareupdate --install --all
-    sudo softwareupdate --install-rosetta --agree-to-license
-    xcode-select --install
     echo "looking for homebrew"
     if [ $(command -v brew) ]; then
         echo "homebrew already installed: $(brew --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
     else
     	echo "homebrew not found, installing homebrew"
+        # sudo softwareupdate --install --all
+        # sudo softwareupdate --install-rosetta --agree-to-license
+        # xcode-select --install
     	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        echo >> $HOME/.zprofile
+        echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
     	echo "homebrew successfully installed: $(brew --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
     fi
     ;;

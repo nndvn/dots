@@ -15,7 +15,7 @@ osascript -e 'tell application "System Preferences" to quit'
 osascript -e 'tell application "System Settings" to quit'
 
 # set computer name, hostname, local hostname
-sudo scutil --set ComputerName $DEVICE_NAME
+sudo scutil --set ComputerName "$DEVICE_NAME"
 sudo scutil --set LocalHostName $(echo "$DEVICE_NAME" | tr ' ' '-')
 sudo scutil --set HostName $(echo "$DEVICE_NAME.local" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
 

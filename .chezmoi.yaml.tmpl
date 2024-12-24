@@ -4,7 +4,6 @@
 {{- $key := (default "0x16704DD694D8A2CD" (promptString "gpg key id" "0x16704DD694D8A2CD")) -}}
 {{- $backup := (promptString "backup media" "/path/to/backup/media") -}}
 {{- $device := (default "NND DEVICE 0X" (promptString "device name" "NND DEVICE 0X")) -}}
-{{- $gpg := (output "which" "gpg") -}}
 
 {{/* boolean feature tags */}}
 {{/* $headless := false -*/}}
