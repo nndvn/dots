@@ -9,5 +9,8 @@ if [ $(command -v brew) ]; then
 else
 	echo "homebrew not found, installing homebrew"
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	echo >> $HOME/.zprofile
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 	echo "homebrew successfully installed: $(brew --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
 fi
