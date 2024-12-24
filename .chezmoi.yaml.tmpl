@@ -24,6 +24,7 @@ data:
   key: {{ $key | quote }}
 
 scriptEnv:
+    KEY_ID: {{ $key | quote }}
     BACKUP_MEDIA: {{ $backup | quote }}
     DEVICE_NAME: {{ $device | quote }}
 

@@ -13,7 +13,7 @@ Darwin)
     else
     	echo "homebrew not found, installing homebrew"
         # sudo softwareupdate --install --all
-        # sudo softwareupdate --install-rosetta --agree-to-license
+        sudo softwareupdate --install-rosetta --agree-to-license
         # xcode-select --install
     	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         echo >> $HOME/.zprofile
@@ -21,6 +21,7 @@ Darwin)
         eval "$(/opt/homebrew/bin/brew shellenv)"
     	echo "homebrew successfully installed: $(brew --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
     fi
+    brew install zsh git gnupg pinentry-mac pass chezmoi
     ;;
 Linux)
     echo "linux platform"
@@ -32,3 +33,6 @@ Linux)
     exit 1
     ;;
 esac
+
+chezmoi init nndvn/dots
+chezmoi apply

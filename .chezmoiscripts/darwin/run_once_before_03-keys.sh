@@ -21,5 +21,13 @@ if [[ $(gpg --card-status) ]]; then
         echo "no gpg keys found on yubikey"
     fi
 else
-    echo "no yubikey detected"
+    echo "no yubikey detected, importing"
+    if [ -d "$BACKUP_MEDIA/gpg" ]; then
+        gpg --import "$BACKUP_MEDIA/gpg/$KEY_ID.asc"
+        gpg --import-ownertrust $BACKUP_MEDIA/gpg/ownertrust.txt
+        gpg --import "$BACKUP_MEDIA/gpg/$KEY_ID.ssb.asc"
+    else
+        echo "$BACKUP_MEDIA/gpg does not exist, exit"
+        exit 0
+    fi
 fi
