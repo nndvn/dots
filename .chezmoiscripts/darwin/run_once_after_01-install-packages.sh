@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eufo pipefail
-echo "run_once_after_install-packages.sh"
+echo "run_once_after_01-install-packages.sh"
 
 echo "installing packages"
 # check if .brewfile exists

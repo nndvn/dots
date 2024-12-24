@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eufo pipefail
-echo "run_once_after_install-bun.sh"
+echo "run_once_after_02-install-bun.sh"
 
 echo "looking for bun"
 if [ $(command -v bun) ]; then
