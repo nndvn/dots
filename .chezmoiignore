@@ -12,5 +12,6 @@
 .chezmoiscripts/linux/**
 {{ end -}}
 
+bootstrap.sh
 install.sh
 README.md
