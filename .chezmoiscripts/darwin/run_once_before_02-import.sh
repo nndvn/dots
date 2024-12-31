@@ -1,0 +1,59 @@
+#!/bin/bash
+# todo: only for personal machine (both macos & linux)
+
+set -eufo pipefail
+echo "02-import.sh"
+
+echo "checking for yubikey presence"
+if gpg --card-status 2>/dev/null; then
+    echo "yubikey detected"
+
+    echo "importing public key"
+    PUBLIC_KEY_URL=$(gpg --card-status 2>/dev/null | grep 'URL of public key' | sed 's/URL of public key : //g')
+    curl -s $PUBLIC_KEY_URL | gpg --import
+    echo $PUBLIC_KEY_URL
+
+    echo "list keys on the yubikey"
+    keys=$(gpg --card-status 2>/dev/null | grep 'Signature key\|Encryption key\|Authentication key')
+    if [ -n "$keys" ]; then
+        echo "gpg keys found on yubikey:"
+        echo "$keys"
+    else
+        echo "no gpg keys found on yubikey"
+    fi
+else
+    echo "no yubikey detected, importing"
+
+    if [ -d "$BACKUP_MEDIA/keys/gpg" ]; then
+        if gpg --list-secret-keys 2>/dev/null | grep -q "$KEY_ID"; then
+            echo "secret key $KEY_ID found"
+        else
+            echo "secret key $KEY_ID not found, importing"
+            gpg --import "$BACKUP_MEDIA/keys/gpg/$KEY_ID.asc"
+            gpg --import-ownertrust $BACKUP_MEDIA/keys/gpg/ownertrust.txt
+            gpg --import "$BACKUP_MEDIA/keys/gpg/$KEY_ID.ssb.asc"
+        fi
+    else
+        echo "$BACKUP_MEDIA/keys/gpg does not exist, exit"
+    fi
+fi
+
+echo "import pass repo $HOME/.password-store"
+if [ -d "$HOME/.password-store" ]; then
+    echo "folder exists, skipping"
+else
+    echo "folder does not exist, cloning"
+    if [ -d "$BACKUP_MEDIA/repos/pwds" ]; then
+        git clone $BACKUP_MEDIA/repos/pwds ~/.password-store
+        pass
+    else
+        echo "$BACKUP_MEDIA/repos/pwds does not exist, exit"
+        # exit 0
+    fi
+fi
+
+echo "creating personal folders"
+folders=("Developer" "Projects")
+for folder in "${folders[@]}"; do
+    mkdir -p $HOME/$folder
+done

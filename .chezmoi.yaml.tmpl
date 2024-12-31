@@ -1,0 +1,68 @@
+{{/* user information */}}
+{{- $full_name := (default "NND" (promptString "full name" "NND")) -}}
+{{- $email_address := (default "d@nnd.vn" (promptString "email address" "d@nnd.vn")) -}}
+{{- $gpg_key_id := (default "0x16704DD694D8A2CD" (promptString "gpg key id" "0x16704DD694D8A2CD")) -}}
+{{/* host information */}}
+{{- $backup := (promptString "backup media" "/path/to/backup/media") -}}
+{{- $device := (default "NND DEVICE 0X" (promptString "device name" "NND DEVICE 0X")) -}}
+
+{{/* boolean feature tags */}}
+{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $work := false -}}{{/* true if this machine is a work machine */}}
+{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
+{{- $ephemeralEnvOrUsername := or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode" "devcontainer") -}}
+{{- $ephemeralCgroup := and (stat "/proc/1/cgroup") (output "cat" "/proc/1/cgroup" | regexMatch "(docker|lxc)") -}}
+{{- if or $ephemeralEnvOrUsername $ephemeralCgroup -}}
+    {{- $headless = true -}}
+    {{- $ephemeral = true -}}
+    {{- writeToStdout "chezmoi is running in a container.\n" -}}
+{{- end -}}
+
+{{- if or (env "SSH_TTY") (env "SSH_CONNECTION") -}}
+    {{- $headless = true -}}
+    {{- writeToStdout "chezmoi is running in headless environment.\n" -}}
+{{- else -}}
+    {{- writeToStdout "chezmoi is not running in headless environment.\n" -}}
+{{- end -}}
+
+{{/* test */}}
+{{- if stdinIsATTY -}}
+    {{- writeToStdout "stdinIsATTY: not headless.\n" -}}
+{{- else -}}
+    {{- writeToStdout "stdinIsATTY: headless.\n" -}}
+{{- end -}}
+
+{{- $chassisType := "desktop" -}}
+
+encryption: "gpg"
+
+gpg:
+  recipient: "{{ $gpg_key_id }}"
+  args: ["--quiet"]
+
+git:
+    autoCommit: true
+    autoPush: false
+
+data:
+    host:
+        arch: "{{ .chezmoi.arch }}"
+        distro:
+            family: "{{ .chezmoi.os }}"
+            id: "{{ get .chezmoi.osRelease "id" | default .chezmoi.os }}"
+        headless: {{ $headless }}
+        type: "{{ $chassisType }}"
+        work: {{ $work }}
+    user:
+        email: "{{ $email_address }}"
+        gpg:
+            id: "{{ $gpg_key_id }}"
+        name: "{{ $full_name }}"
+
+scriptEnv:
+    KEY_ID: "{{ $gpg_key_id }}"
+    BACKUP_MEDIA: "{{ $backup }}"
+    DEVICE_NAME: "{{ $device }}"

@@ -1,0 +1,23 @@
+{{ if ne .chezmoi.os "darwin" -}}
+.brewfile
+.brew-aliases
+.chezmoiscripts/darwin/**
+.config/ghostty
+.config/waveterm
+.config/zed
+.warp
+.gitconfig
+.zprofile
+{{ end -}}
+
+{{ if ne .chezmoi.os "linux" -}}
+.chezmoiscripts/linux/**
+{{ end -}}
+
+{{ if .host.headless -}}
+.gnupg/sshcontrol
+.ssh/config
+{{ end -}}
+
+install.sh
+README.md

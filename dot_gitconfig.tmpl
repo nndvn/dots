@@ -1,0 +1,12 @@
+[init]
+	defaultBranch = main
+[user]
+	name = {{ .user.name }}
+	email = {{ .user.email }}
+	signingkey = {{ .user.gpg.id }}
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[gpg]
+	program = {{ output "which" "gpg" }}
