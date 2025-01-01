@@ -6,7 +6,20 @@ echo "03-configure.sh"
 # change shell
 echo "sudo chsh -s $(which zsh) $USER"
 
+# set hostname
+sudo hostnamectl set-hostname $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+sudo hostnamectl set-hostname "$DEVICE_NAME" --pretty
+
 {{ if .host.headless }}
-tailscale_status=$(tailscale status >/dev/null 2>&1)
-echo $tailscale_status
+# tailscale
+# tailscale status give error exit 1
+
+# firewall
+ufw_status=$(sudo ufw status | grep -w "Status:")
+if [[ $ufw_status == *"Status: active"* ]]; then
+    echo "ufw is active"
+else
+    echo "ufw is inactive"
+fi
+sudo ufw status verbose
 {{ end }}
