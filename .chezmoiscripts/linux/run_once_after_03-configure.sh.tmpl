@@ -4,18 +4,15 @@ set -eufo pipefail
 echo "03-configure.sh"
 
 # change shell
-echo "sudo chsh -s $(which zsh) $USER"
+sudo chsh -s $(which zsh) $USER
 
 # set hostname
-# sudo hostnamectl set-hostname $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
-# sudo hostnamectl set-hostname "$DEVICE_NAME" --pretty
-echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]'
+sudo hostnamectl set-hostname $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+sudo hostnamectl set-hostname "$DEVICE_NAME" --pretty
 
 {{ if .host.headless }}
-# tailscale
-# tailscale status give error exit 1
-
 # firewall
+# tailscale status give error exit 1
 ufw_status=$(sudo ufw status | grep -w "Status:")
 if [[ $ufw_status == *"Status: active"* ]]; then
     echo "ufw is active"
