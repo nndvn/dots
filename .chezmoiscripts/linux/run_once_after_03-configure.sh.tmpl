@@ -4,10 +4,18 @@ set -eufo pipefail
 echo "03-configure.sh"
 
 # change shell
-echo "sudo chsh -s $(which zsh) $USER"
+sudo chsh -s $(which zsh) $USER
 
 {{ if .host.headless }}
-# server configure
+# tailscale
+tailscale_status=$(tailscale status 2>&1)
+if [[ "$tailscale_status" == *"Logged out."* ]]; then
+  echo "tailscale is down"
+  # sudo tailscale up --auth-key=tskey-auth-aBC-Xyz --operator=$USER
+else
+  echo "tailscale is up"
+fi
+tailscale status
 
 # docker
 sudo usermod -aG docker $USER # need to logout & login again
