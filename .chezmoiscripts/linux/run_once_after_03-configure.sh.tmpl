@@ -8,17 +8,11 @@ echo "03-configure.sh"
 
 {{ if .host.headless }}
 # tailscale
-tailscale_status=$(tailscale status)
-if [[ "$tailscale_status" == *"Logged out."* ]]; then
-  echo "tailscale is down"
-  # sudo tailscale up --auth-key=tskey-auth-aBC-Xyz --operator=$USER
-else
-  echo "tailscale is up"
-fi
 tailscale status
 
 # docker
-sudo usermod -aG docker $USER # need to logout & login again
+# need to logout & login again
+# sudo usermod -aG docker $USER
 {{ else }}
 # desktop configure
 {{ end }}
