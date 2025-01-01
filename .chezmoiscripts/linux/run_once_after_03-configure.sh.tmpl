@@ -18,6 +18,12 @@ if [[ $ufw_status == *"Status: active"* ]]; then
     echo "ufw is active"
 else
     echo "ufw is inactive"
+    sudo ufw enable
+    sudo ufw default deny incoming
+    sudo ufw default allow outgoing
+    sudo ufw allow in on tailscale0
+    # todo: limit range
+    sudo ufw reload
 fi
 sudo ufw status verbose
 
