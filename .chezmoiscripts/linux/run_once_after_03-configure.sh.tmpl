@@ -6,13 +6,17 @@ echo "03-configure.sh"
 # change shell
 # echo "sudo chsh -s $(which zsh) $USER"
 
-{{ if .host.headless }}
+{{- if .host.headless -}}
+
 # tailscale
 tailscale status
 
 # docker
 # need to logout & login again
 # sudo usermod -aG docker $USER
-{{ else }}
+
+{{- else -}}
+
 # desktop configure
-{{ end }}
+
+{{- end -}}
