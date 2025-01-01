@@ -8,7 +8,6 @@
 # $ gpg-connect-agent reloadagent /bye
 # -----------------------------------------------------------------------------
 
-{{ if eq .chezmoi.os "darwin" -}}
 # use gpg-agent instead of ssh-agent
 # https://wiki.archlinux.org/title/GnuPG#SSH_agent
 enable-ssh-support
@@ -16,8 +15,9 @@ enable-ssh-support
 # select PIN entry program:
 # pinentry-tty, pinentry-curses, pinentry-gnome3, pinentry-mac,...
 # TODO: for linux
-pinentry-program {{ output "which" "pinentry-mac" -}}
-{{ end -}}
+{{- if eq .chezmoi.os "darwin" }}
+pinentry-program {{ output "which" "pinentry-mac" | trim }}
+{{- end }}
 
 # extend re-use window to 2hrs
 default-cache-ttl 7200

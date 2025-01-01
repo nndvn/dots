@@ -9,4 +9,4 @@
 [tag]
 	gpgsign = true
 [gpg]
-	program = {{ output "which" "gpg" }}
+	program = {{ output "which" "gpg" | trim }}
