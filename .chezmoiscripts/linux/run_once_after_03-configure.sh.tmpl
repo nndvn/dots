@@ -7,6 +7,9 @@ echo "03-configure.sh"
 sudo hostnamectl set-hostname "$DEVICE_NAME" --pretty
 sudo hostnamectl set-hostname $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
 
+# change shell
+sudo chsh -s $(which zsh) $USER
+
 {{ if .host.headless }}
 # firewall
 tailscale_status=$(tailscale status 2>&1)

@@ -28,13 +28,6 @@
     {{- writeToStdout "chezmoi is not running in headless environment.\n" -}}
 {{- end -}}
 
-{{/* test */}}
-{{- if stdinIsATTY -}}
-    {{- writeToStdout "stdinIsATTY: not headless.\n" -}}
-{{- else -}}
-    {{- writeToStdout "stdinIsATTY: headless.\n" -}}
-{{- end -}}
-
 {{- $chassisType := "desktop" -}}
 
 encryption: "gpg"
