@@ -4,7 +4,7 @@ set -eufo pipefail
 echo "03-configure.sh"
 
 # change shell
-# sudo chsh -s $(which zsh) $USER"
+echo "sudo chsh -s $(which zsh) $USER"
 
 {{ if .host.headless }}
 # tailscale
