@@ -5,3 +5,8 @@ echo "03-configure.sh"
 
 # change shell
 echo "sudo chsh -s $(which zsh) $USER"
+
+{{ if .host.headless }}
+tailscale_status=$(tailscale status >/dev/null 2>&1)
+echo $tailscale_status
+{{ end }}
