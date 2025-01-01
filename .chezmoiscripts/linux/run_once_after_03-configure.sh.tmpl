@@ -23,12 +23,12 @@ if [[ $ufw_status == *"Status: active"* ]]; then
     echo "ufw is active"
 else
     echo "ufw is inactive"
-    sudo ufw enable
-    sudo ufw default deny incoming
-    sudo ufw default allow outgoing
-    sudo ufw allow in on tailscale0
+    # sudo ufw enable
+    # sudo ufw default deny incoming
+    # sudo ufw default allow outgoing
+    # sudo ufw allow in on tailscale0
     # sudo ufw limit from 192.168.1.0/24 to any port 22 proto tcp
-    sudo ufw reload
+    # sudo ufw reload
 fi
 sudo ufw status verbose
 
