@@ -1,14 +1,7 @@
 #!/bin/bash
 
 set -eufo pipefail
-echo "03-configure.sh"
-
-# change shell
-sudo chsh -s $(which zsh) $USER
-
-# set hostname
-sudo hostnamectl set-hostname $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
-sudo hostnamectl set-hostname "$DEVICE_NAME" --pretty
+echo "configure-network.sh"
 
 {{ if .host.headless }}
 # firewall
@@ -24,11 +17,8 @@ else
     sudo ufw allow in on tailscale0
     # todo: limit range
     sudo ufw reload
+    sudo ufw status verbose
 fi
-sudo ufw status verbose
-
-# docker
-sudo usermod -aG docker $USER
 {{ end }}
 
 # done

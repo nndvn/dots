@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -eufo pipefail
+echo "install-tailscale.sh"
+
+# tailscale
+if [ $(command -v tailscale) ]; then
+    echo "tailscale already installed: $(tailscale --version)"
+else
+    echo "tailscale not found, installing tailscale"
+    curl -fsSL https://tailscale.com/install.sh | sh
+    echo "tailscale successfully installed: $(tailscale --version)"
+fi

@@ -6,7 +6,6 @@
 .config/waveterm
 .config/zed
 .warp
-.gitconfig
 .zprofile
 {{ end -}}
 
@@ -17,6 +16,7 @@
 {{ if .host.headless -}}
 .gnupg/sshcontrol
 .ssh/config
+.gitconfig
 {{ end -}}
 
 install.sh

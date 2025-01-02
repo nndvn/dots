@@ -3,7 +3,7 @@
 # https://macos-defaults.com
 
 set -eufo pipefail
-echo "03-configure.sh"
+echo "configure-defaults.sh"
 
 # pre-flight checks
 # closing any system preferences panes, to prevent them from overriding changes
@@ -13,11 +13,6 @@ echo "03-configure.sh"
 osascript -e 'tell application "System Preferences" to quit'
 # in macos ventura and later
 osascript -e 'tell application "System Settings" to quit'
-
-# set computer name, hostname, local hostname
-sudo scutil --set ComputerName "$DEVICE_NAME"
-sudo scutil --set LocalHostName $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
-# sudo scutil --set HostName $(echo "$DEVICE_NAME.local" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
 
 # dock
 defaults write com.apple.dock "tilesize" -int "64"
@@ -47,18 +42,6 @@ killall Finder
 # menu bar
 defaults write com.apple.menuextra.clock "ShowSeconds" -bool "true"
 defaults -currentHost write com.apple.Spotlight MenuItemHidden -bool "true"
-
-# todo: set default browser
-# todo: spotlight > raycast
-# todo: spotlight off
-# sudo mdutil -i off / # turn indexing off
-# sudo rm -rf /.Spotlight* # delete spotlight folder
-# sudo mdutil -i on / # turn indexing on
-# sudo mdutil -E / # rebuild
-
-# tailscale
-# todo: need to open tailscale
-# sudo tailscale up --operator=$USER
 
 # done
 echo "done. note that some of these changes require a logout/restart to take effect"

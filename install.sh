@@ -116,9 +116,9 @@ main() {
             ;;
         debian)
             echo "running on linux"
-            export DEBIAN_FRONTEND=noninteractive
-            sudo apt update
-            sudo apt install -y curl git gnupg
+            # export DEBIAN_FRONTEND=noninteractive
+            # sudo apt update
+            # sudo apt install -y curl git gnupg
             install_chezmoi
             ;;
         *)

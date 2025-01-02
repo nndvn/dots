@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -eufo pipefail
+echo "install-docker.sh"
+
+{{ if .host.headless -}}
+# docker
+if [ $(command -v docker) ]; then
+    echo "docker already installed: $(docker --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
+else
+    echo "docker not found, installing docker"
+    curl -fsSL https://get.docker.com | sh
+    echo "docker successfully installed: $(docker --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
+fi
+{{ end -}}

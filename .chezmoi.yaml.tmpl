@@ -46,6 +46,7 @@ data:
         distro:
             family: "{{ .chezmoi.os }}"
             id: "{{ get .chezmoi.osRelease "id" | default .chezmoi.os }}"
+        ephemeral: {{ $ephemeral }}
         headless: {{ $headless }}
         type: "{{ $chassisType }}"
         work: {{ $work }}
