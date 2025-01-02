@@ -20,9 +20,6 @@ EOF
 
 {{ else if or (eq .host.distro.id "debian") (eq .host.distro.id "debian") }}
 
-sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
-{{ range .packages.linux.pkgs -}}
-sudo apt install -y {{ . }}
-{{ end -}}
+echo {{ .host.distro.id | quote }}
 
 {{ end -}}
