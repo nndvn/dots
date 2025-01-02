@@ -7,7 +7,7 @@ echo "01-install.sh"
 sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
 
 # install requirements
-sudo apt install -y zsh git gpg pass ufw scdaemon pcscd
+sudo apt install -y {{ .packages.linux.pkgs | join " " }}
 
 # tailscale
 if [ $(command -v tailscale) ]; then
