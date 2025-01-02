@@ -5,6 +5,6 @@ echo "01-install.sh"
 
 {{ if eq .host.distro.id "debian" "ubuntu" }}
 
-echo {{ .host.distro.id | quote }}
+echo "{{ .host.distro.id }}"
 
 {{ end }}
