@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -eufo pipefail
+echo "01-install-packages.sh"
+
+{{ if eq .host.distro.id "darwin" -}}
+brew cleanup && brew update && brew upgrade
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .packages.darwin.taps -}}
+tap {{ . | quote | replace " " "\", \"" }}
+{{ end -}}
+{{ range .packages.darwin.brews -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .packages.darwin.casks -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
+{{ end -}}
+
+{{ if eq .host.distro.id "debian" "ubuntu" -}}
+sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
+sudo apt install -y {{ .packages.linux.pkgs | join " " }}
+{{ end -}}
