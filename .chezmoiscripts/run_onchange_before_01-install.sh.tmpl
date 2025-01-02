@@ -3,7 +3,7 @@
 set -eufo pipefail
 echo "01-install.sh"
 
-{{ if (or (eq .host.distro.id "debian") (eq .host.distro.id "debian")) }}
+{{ if eq .host.distro.id "debian" "ubuntu" }}
 
 echo {{ .host.distro.id | quote }}
 
