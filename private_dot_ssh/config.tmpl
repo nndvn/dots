@@ -3,3 +3,10 @@
 Host *
     Compression yes
     TCPKeepAlive yes
+
+Host dlab
+    HostName {{ pass "host/dlab/ip" }}
+    User nnd
+    Port {{ pass "protocol/ssh/port" }}
+    ForwardAgent yes
+    RemoteForward {{ pass "host/dlab/agent" }} {{ output "gpgconf" "--list-dir" "agent-extra-socket" | trim }}
