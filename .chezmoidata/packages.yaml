@@ -35,6 +35,7 @@ packages:
       - git
       - gnupg
       - pass
+      - pcscd
       - scdaemon
       - ufw
     snaps:

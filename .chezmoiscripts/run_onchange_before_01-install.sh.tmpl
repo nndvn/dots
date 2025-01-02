@@ -3,7 +3,7 @@
 set -eufo pipefail
 echo "01-install.sh"
 
-{{- if eq .chezmoi.os "darwin" }}
+{{- if eq .host.distro.id "darwin" }}
 
 brew cleanup && brew update && brew upgrade
 brew bundle --no-lock --file=/dev/stdin <<EOF
@@ -18,9 +18,11 @@ cask {{ . | quote }}
 {{ end -}}
 EOF
 
-{{ else if eq .chezmoi.os "linux" }}
+{{ else if eq .host.distro.id "debian" }}
 
 sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
-sudo apt install -y zsh git gpg pass ufw scdaemon pcscd
+{{ range .packages.linux.pkgs -}}
+sudo apt install -y {{ . }}
+{{ end -}}
 
 {{ end -}}
