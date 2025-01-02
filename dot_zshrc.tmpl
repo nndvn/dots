@@ -90,7 +90,7 @@ alias moi="chezmoi"
 alias neo="neofetch"
 alias clr="clear"
 
-{{ if and (not .host.headless) -}}
+{{ if not .host.headless -}}
 # enable SSH access using a GPG key for authentication
 ## configure SSH to use GPG
 unset SSH_AGENT_PID
