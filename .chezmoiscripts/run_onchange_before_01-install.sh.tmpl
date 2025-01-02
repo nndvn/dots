@@ -18,7 +18,7 @@ cask {{ . | quote }}
 {{ end -}}
 EOF
 
-{{ else if or (eq .host.distro.id "debian") (eq .host.distro.id "ubuntu") }}
+{{ else if (or (eq .host.distro.id "debian") (eq .host.distro.id "debian")) }}
 
 sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
 {{ range .packages.linux.pkgs -}}
