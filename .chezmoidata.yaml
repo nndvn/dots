@@ -1,68 +1,11 @@
 font:
   size: 12
 
-packages:
-  - name: brave-browser
-    apt: false
-    brew: brave-browser
-    script: false
-    snap: brave
-  - name: chezmoi
-    apt: false
-    brew: chezmoi
-    script: curl -fsLS get.chezmoi.io | sh
-    snap: false
-  - name: docker
-    apt: false
-    brew: docker
-    script: curl -fsSL https://get.docker.com | sh
-    snap: false
-
-software:
-  desktop-macos:
-    taps:
-      - homebrew/aliases
-      - homebrew/bundle
-      - oven-sh/bun
-    brews:
-      - chezmoi
-      - git
-      - gnupg
-      - oven-sh/bun/bun
-      - pass
-      - pinentry-mac
-      - volta
-      - zsh
-    casks:
-      - balenaetcher
-      - brave-browser
-      # - docker
-      - figma
-      - font-noto-sans-mono
-      - ghostty
-      # - logi-options+
-      - obsidian
-      - raspberry-pi-imager
-      - raycast
-      - tailscale
-      # - visual-studio-code
-      # - vlc
-      - warp
-      # - yubico-authenticator
-      # - yubico-yubikey-manager
-      - zed
-  desktop-ubuntu:
-    apts:
-      - git
-      - gnupg
-      - pass
-      - pcscd
-      - scdaemon
-      - ufw
-    scripts:
-      - name: bun
-        script: curl -fsSL https://bun.sh/install | bash
-      - name: docker
-        script: curl -fsSL https://get.docker.com | sh
-      - name: tailscale
-        script: https://tailscale.com/install.sh
+test:
+  darwin:
+    - brave-browser
+    - warp-terminal
+    - zed-editor
+  linux:
+    - brave-browser
+    - zed-editor

@@ -1,31 +1,10 @@
 packages:
-  balenaetcher:
-    apt: https://github.com/balena-io/etcher/releases/download/v1.19.25/balena-etcher_1.19.25_amd64.deb
-    cask: balenaetcher
   brave-browser:
-    apt: false
     cask: brave-browser
     snap: brave
-  bun:
-    brew: oven-sh/bun/bun
-    script: curl -fsSL https://bun.sh/install | bash
-  chezmoi:
-    apt: false
-    brew: chezmoi
-    script: curl -fsLS get.chezmoi.io | sh
-  docker-desktop:
-    apt: false
-    brew: false
-    cask: docker
-    script: false
-  docker-engine:
-    brew: docker
-    script: curl -fsSL https://get.docker.com | sh
-  volta:
-    brew: volta
-    script: curl https://get.volta.sh | bash
   warp-terminal:
+    apt: https://app.warp.dev/get_warp?package=deb
     cask: warp
-  zed:
+  zed-editor:
     cask: zed
     script: curl -f https://zed.dev/install.sh | sh

@@ -1,4 +1,4 @@
-packages:
+software:
   darwin:
     taps:
       - homebrew/aliases
@@ -32,7 +32,7 @@ packages:
       # - yubico-yubikey-manager
       - zed
   linux:
-    pkgs:
+    apts:
       - git
       - gnupg
       - pass
@@ -40,7 +40,9 @@ packages:
       - scdaemon
       - ufw
     snaps:
-      - chezmoi
+      - brave
+      - chezmoi --classic
+      - obsidian --classic
     scripts:
       - https://bun.sh/install
       - https://get.docker.com

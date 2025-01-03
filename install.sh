@@ -96,7 +96,7 @@ init_chezmoi() {
     if ! command_exists chezmoi; then
         error_exit "chezmoi installation not found"
     else
-        echo 'chezmoi init --apply "$CHEZMOI_GIT_REPO"'
+        chezmoi init --apply "$CHEZMOI_GIT_REPO"
     fi
 }
 
@@ -115,7 +115,7 @@ main() {
             install_chezmoi
             ;;
         debian)
-            echo "running on linux"
+            echo "running on debian"
             # export DEBIAN_FRONTEND=noninteractive
             # sudo apt update
             # sudo apt install -y curl git gnupg
