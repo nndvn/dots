@@ -25,3 +25,4 @@ sudo apt install -y {{ .software.linux.pkgs | join " " }}
 {{ range .software.linux.snaps -}}
 echo {{ . | quote }}
 {{ end -}}
+{{ end -}}
