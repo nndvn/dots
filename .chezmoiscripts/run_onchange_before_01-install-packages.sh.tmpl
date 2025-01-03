@@ -23,6 +23,6 @@ sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
 sudo apt install -y {{ .software.linux.apts | join " " }}
 
 {{ range .software.linux.snaps -}}
-echo {{ . | quote }}
+sudo snap install {{ . }}
 {{ end -}}
 {{ end -}}
