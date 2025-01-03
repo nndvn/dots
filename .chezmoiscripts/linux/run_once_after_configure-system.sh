@@ -4,7 +4,7 @@ set -eufo pipefail
 echo "configure-system.sh"
 
 # change shell
-if [[ -n "$ZSH_VERSION" ]]; then
+if [[ "$SHELL" == "$(which zsh)" ]]; then
     echo "current shell is zsh"
 else
     echo "current shell is not zsh, set zsh as default shell..."
