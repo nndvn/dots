@@ -20,7 +20,7 @@ EOF
 
 {{ if (eq .host.distro.id "debian" "ubuntu") -}}
 sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
-sudo apt install -y {{ .software.linux.pkgs | join " " }}
+sudo apt install -y {{ .software.linux.apts | join " " }}
 
 {{ range .software.linux.snaps -}}
 echo {{ . | quote }}
