@@ -32,7 +32,7 @@ detect_os() {
         echo "macos"
     elif [[ "$OSTYPE" == 'linux'* ]]; then
         # todo: support for more distros
-        if command_exists apt; then
+        if command_exists apt || [[ -f /etc/debian_version ]]; then
             echo "debian"
         else
             echo "unsupported"
@@ -60,7 +60,7 @@ install_homebrew() {
             error_exit "homebrew installation not found"
         fi
 
-        echo "chezmoi successfully installed: $(version_number brew)"
+        echo "homebrew successfully installed: $(version_number brew)"
     else
         echo "homebrew already installed: $(version_number brew)"
     fi
@@ -96,7 +96,7 @@ init_chezmoi() {
     if ! command_exists chezmoi; then
         error_exit "chezmoi installation not found"
     else
-        chezmoi init --apply "$CHEZMOI_GIT_REPO"
+        echo 'chezmoi init --apply "$CHEZMOI_GIT_REPO"'
     fi
 }
 

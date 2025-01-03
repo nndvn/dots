@@ -1,7 +1,15 @@
 #!/bin/bash
 
 set -eufo pipefail
-echo "configure-system.sh"
+gum log -sl debug "run_once_after_configure-system.sh"
+
+# change shell
+if [[ "$SHELL" == "$(which zsh)" ]]; then
+    echo "current shell is zsh"
+else
+    echo "current shell is not zsh, set zsh as default shell..."
+    sudo chsh -s $(which zsh) $USER
+fi
 
 # pre-flight checks
 # closing any system preferences panes, to prevent them from overriding changes
@@ -13,8 +21,8 @@ osascript -e 'tell application "System Preferences" to quit'
 osascript -e 'tell application "System Settings" to quit'
 
 # set computer name, hostname, local hostname
-sudo scutil --set ComputerName "$DEVICE_NAME"
-sudo scutil --set LocalHostName $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
+# sudo scutil --set ComputerName "$DEVICE_NAME"
+# sudo scutil --set LocalHostName $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
 # sudo scutil --set HostName $(echo "$DEVICE_NAME.local" | tr ' ' '-' | tr '[:upper:]' '[:lower:]')
 
 # todo: set default browser
@@ -30,4 +38,5 @@ sudo scutil --set LocalHostName $(echo "$DEVICE_NAME" | tr ' ' '-' | tr '[:upper
 # sudo tailscale up --operator=$USER
 
 # done
-echo "done. note that some of these changes require a logout/restart to take effect"
+gum log -sl info 'Done applying macOS settings'
+gum log -sl warn 'Note that some of these changes may require a logout/restart to take effect'

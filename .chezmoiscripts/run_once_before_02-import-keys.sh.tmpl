@@ -3,7 +3,7 @@
 set -eufo pipefail
 echo "02-import-keys.sh"
 
-{{ if or (not .host.headless) (not .host.ephemeral) -}}
+{{ if (or (not .host.headless) (not .host.ephemeral)) -}}
 echo "checking for yubikey presence"
 if gpg --card-status 2>/dev/null; then
     echo "yubikey detected"

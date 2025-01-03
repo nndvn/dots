@@ -55,6 +55,7 @@ data:
         gpg:
             id: "{{ $gpg_key_id }}"
         name: "{{ $full_name }}"
+        username: "{{ default "user" (env "USER") }}"
 
 scriptEnv:
     KEY_ID: "{{ $gpg_key_id }}"

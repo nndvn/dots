@@ -6,7 +6,7 @@ Host *
 
 Host dlab
     HostName {{ pass "host/dlab/ip" }}
-    User nnd
+    User {{ .user.username }}
     Port {{ pass "protocol/ssh/port" }}
     ForwardAgent yes
     RemoteForward {{ pass "host/dlab/agent" }} {{ output "gpgconf" "--list-dir" "agent-extra-socket" | trim }}

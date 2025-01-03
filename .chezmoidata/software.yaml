@@ -1,25 +1,5 @@
-font:
-  size: 12
-
 packages:
-  - name: brave-browser
-    apt: false
-    brew: brave-browser
-    script: false
-    snap: brave
-  - name: chezmoi
-    apt: false
-    brew: chezmoi
-    script: curl -fsLS get.chezmoi.io | sh
-    snap: false
-  - name: docker
-    apt: false
-    brew: docker
-    script: curl -fsSL https://get.docker.com | sh
-    snap: false
-
-software:
-  desktop-macos:
+  darwin:
     taps:
       - homebrew/aliases
       - homebrew/bundle
@@ -51,18 +31,17 @@ software:
       # - yubico-authenticator
       # - yubico-yubikey-manager
       - zed
-  desktop-ubuntu:
-    apts:
+  linux:
+    pkgs:
       - git
       - gnupg
       - pass
       - pcscd
       - scdaemon
       - ufw
+    snaps:
+      - chezmoi
     scripts:
-      - name: bun
-        script: curl -fsSL https://bun.sh/install | bash
-      - name: docker
-        script: curl -fsSL https://get.docker.com | sh
-      - name: tailscale
-        script: https://tailscale.com/install.sh
+      - https://bun.sh/install
+      - https://get.docker.com
+      - https://tailscale.com/install.sh
