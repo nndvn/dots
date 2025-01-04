@@ -35,7 +35,7 @@ software:
       # - yubico-authenticator
       # - yubico-yubikey-manager
       - zed
-  linux-desktop:
+  linux_desktop:
     apts:
       - git
       - gnupg
