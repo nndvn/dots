@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -eufo pipefail
+gum log -sl debug "$(basename "$0")"
+
+sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
+sudo apt install -y {{ .software.linux-desktop.apts | sortAlpha | uniq | join " " }}
+
+{{ range .software.linux-desktop.snaps | sortAlpha | uniq -}}
+sudo snap install {{ . }}
+{{ end -}}

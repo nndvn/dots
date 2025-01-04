@@ -1,7 +1,8 @@
 #!/bin/bash
 
 set -eufo pipefail
-echo "01-install-packages.sh"
+gum log -sl debug "$(basename "$0")"
+
 
 {{ if (eq .host.distro.id "darwin") -}}
 brew cleanup && brew update && brew upgrade
@@ -16,13 +17,4 @@ brew {{ . | quote }}
 cask {{ . | quote }}
 {{ end -}}
 EOF
-{{ end -}}
-
-{{ if (eq .host.distro.id "debian" "ubuntu") -}}
-sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
-sudo apt install -y {{ .software.linux.apts | join " " }}
-
-{{ range .software.linux.snaps -}}
-sudo snap install {{ . }}
-{{ end -}}
 {{ end -}}

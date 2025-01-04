@@ -1,4 +1,5 @@
 #!/bin/bash
+# todo: install requirements
 
 set -eufo pipefail
 
