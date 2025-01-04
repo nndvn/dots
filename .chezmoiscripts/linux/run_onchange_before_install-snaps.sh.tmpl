@@ -3,8 +3,7 @@
 set -eufo pipefail
 gum log -sl debug "$(basename "$0")"
 
-{{ if (eq .host.distro.id "debian" "ubuntu") -}}
-{{ if (or (not .host.headless) (not .host.ephemeral)) -}}
+{{ if (and (eq .host.distro.id "debian" "ubuntu") (not .host.headless) (not .host.ephemeral)) -}}
 {{ range .software.linux.snaps -}}
 sudo snap install {{ . }}
 {{ end -}}
