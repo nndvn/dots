@@ -48,7 +48,11 @@ software:
       - chezmoi --classic
       - obsidian --classic
     scripts:
-      - curl -fsSL https://bun.sh/install | bash
-      - curl https://get.volta.sh | bash
-      - curl -fsSL https://get.docker.com | sh
-      - curl -fsSL https://tailscale.com/install.sh | sh
+      - name: bun
+        value: curl -fsSL https://bun.sh/install | bash
+      - name: volta
+        value: curl https://get.volta.sh | bash
+      - name: docker
+        value: curl -fsSL https://get.docker.com | sh
+      - name: tailscale
+        value: curl -fsSL https://tailscale.com/install.sh | sh
