@@ -3,6 +3,7 @@
 set -eufo pipefail
 gum log -sl debug "$(basename "$0")"
 
+{{ if .host.headless -}}
 if groups | grep -q docker; then
   echo "current user is in the 'docker' group"
 else
@@ -12,3 +13,4 @@ fi
 
 gum log -sl info 'done'
 gum log -sl warn 'note that some of these changes may require a logout/restart to take effect'
+{{ end -}}
