@@ -11,5 +11,13 @@ sudo snap install {{ . }}
 {{ end -}}
 
 {{ range .software.linux_desktop.scripts -}}
-echo "{{ .name }} - {{ .value }}"
+command_name={{ .name }}
+command_script={{ .value }}
+if [ $(command -v $command_name) ]; then
+    echo "$command_name already installed: $($command_name --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
+else
+    echo "$command_name not found, installing docker"
+    eval "$command_script"
+    echo "$command_name successfully installed: $($command_name --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"
+fi
 {{ end -}}
