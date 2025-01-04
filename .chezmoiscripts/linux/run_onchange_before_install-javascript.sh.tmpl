@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -eufo pipefail
+gum log -sl debug "$(basename "$0")"
+
+{{ if not .host.headless }}
+gum log -sl info "looking for bun"
+if [ $(command -v bun) ]; then
+	gum log -sl info "bun already installed: $(bun --version)"
+else
+	gum log -sl info "bun not found, installing bun"
+	curl -fsSL https://bun.sh/install | bash
+	export PATH="$HOME/.bun/bin:$PATH"
+	gum log -sl info "bun successfully installed: $(bun --version)"
+fi
+
+gum log -sl info "looking for volta"
+if [ $(command -v volta) ]; then
+	gum log -sl info  "volta already installed: $(volta --version)"
+else
+	gum log -sl info "volta not found, installing volta"
+	curl https://get.volta.sh | bash
+	gum log -sl info "volta successfully installed: $(volta --version)"
+fi
+{{ end -}}

@@ -3,7 +3,7 @@
 # https://macos-defaults.com
 
 set -eufo pipefail
-echo "configure-defaults.sh"
+gum log -sl debug "$(basename "$0")"
 
 # pre-flight checks
 # closing any system preferences panes, to prevent them from overriding changes
@@ -44,4 +44,5 @@ defaults write com.apple.menuextra.clock "ShowSeconds" -bool "true"
 defaults -currentHost write com.apple.Spotlight MenuItemHidden -bool "true"
 
 # done
-echo "done. note that some of these changes require a logout/restart to take effect"
+gum log -sl info 'Done applying macOS settings'
+gum log -sl warn 'Note that some of these changes may require a logout/restart to take effect'

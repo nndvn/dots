@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -eufo pipefail
-gum log -sl debug "run_once_after_configure-system.sh"
+gum log -sl debug "$(basename "$0")"
 
 # change shell
 if [[ "$SHELL" == "$(which zsh)" ]]; then
