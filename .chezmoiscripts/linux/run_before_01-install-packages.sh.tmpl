@@ -11,5 +11,5 @@ sudo snap install {{ . }}
 {{ end -}}
 
 {{ range .software.linux_desktop.scripts -}}
-echo {{ .name }}
+echo "{{ .name }} - {{ .value }}"
 {{ end -}}
