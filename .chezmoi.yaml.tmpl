@@ -1,28 +1,28 @@
 {{/* user information */}}
 {{- $full_name := (default "NND" (promptString "full name" "NND")) -}}
-{{- $email_address := (default "d@nnd.vn" (promptString "email address" "d@nnd.vn")) -}}
+{{- $primary_email := (default "d@nnd.vn" (promptString "primary email" "d@nnd.vn")) -}}
 {{- $gpg_key_id := (default "0x16704DD694D8A2CD" (promptString "gpg key id" "0x16704DD694D8A2CD")) -}}
 {{/* host information */}}
 {{- $backup := (promptString "backup media" "/path/to/backup/media") -}}
 {{- $device := (default "NND DEVICE 0X" (promptString "device name" "NND DEVICE 0X")) -}}
 
 {{/* boolean feature tags */}}
-{{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
-{{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $work := false -}}{{/* true if this machine is a work machine */}}
+{{- $headless_environment := false -}}{{/* true if this machine does not have a screen and keyboard */}}
+{{- $ephemeral_environment := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $work_environment := false -}}{{/* true if this machine is a work machine */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
 {{- $ephemeralEnvOrUsername := or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode" "devcontainer") -}}
 {{- $ephemeralCgroup := and (stat "/proc/1/cgroup") (output "cat" "/proc/1/cgroup" | regexMatch "(docker|lxc)") -}}
 {{- if or $ephemeralEnvOrUsername $ephemeralCgroup -}}
-    {{- $headless = true -}}
-    {{- $ephemeral = true -}}
+    {{- $headless_environment = true -}}
+    {{- $ephemeral_environment = true -}}
     {{- writeToStdout "chezmoi is running in a container.\n" -}}
 {{- end -}}
 
 {{- if or (env "SSH_TTY") (env "SSH_CONNECTION") -}}
-    {{- $headless = true -}}
+    {{- $headless_environment = true -}}
     {{- writeToStdout "chezmoi is running in headless environment.\n" -}}
 {{- else -}}
     {{- writeToStdout "chezmoi is not running in headless environment.\n" -}}
@@ -46,18 +46,19 @@ data:
         distro:
             family: "{{ .chezmoi.os }}"
             id: "{{ get .chezmoi.osRelease "id" | default .chezmoi.os }}"
-        ephemeral: {{ $ephemeral }}
-        headless: {{ $headless }}
         type: "{{ $chassisType }}"
-        work: {{ $work }}
+        is_headless: {{ $headless_environment }}
+        is_ephemeral: {{ $ephemeral_environment }}
+        is_work: {{ $work_environment }}
     user:
-        email: "{{ $email_address }}"
+        email: "{{ $primary_email }}"
         gpg:
             id: "{{ $gpg_key_id }}"
         name: "{{ $full_name }}"
         username: "{{ default "user" (env "USER") }}"
 
 scriptEnv:
+    HOST_IS_WORK: "{{ $work_environment }}"
     KEY_ID: "{{ $gpg_key_id }}"
     BACKUP_MEDIA: "{{ $backup }}"
     DEVICE_NAME: "{{ $device }}"

@@ -1,18 +1,18 @@
 #!/bin/bash
 
 set -eufo pipefail
-echo "01-install-packages.sh"
+gum log -sl debug "$(basename "$0")"
 
 {{ if (eq .host.distro.id "darwin") -}}
 brew cleanup && brew update && brew upgrade
 brew bundle --no-lock --file=/dev/stdin <<EOF
-{{ range .software.darwin.taps -}}
+{{ range .software.darwin.taps | sortAlpha | uniq -}}
 tap {{ . | quote | replace " " "\", \"" }}
 {{ end -}}
-{{ range .software.darwin.brews -}}
+{{ range .software.darwin.brews | sortAlpha | uniq -}}
 brew {{ . | quote }}
 {{ end -}}
-{{ range .software.darwin.casks -}}
+{{ range .software.darwin.casks | sortAlpha | uniq -}}
 cask {{ . | quote }}
 {{ end -}}
 EOF
@@ -21,8 +21,4 @@ EOF
 {{ if (eq .host.distro.id "debian" "ubuntu") -}}
 sudo apt autoremove && sudo apt update && sudo apt full-upgrade -y
 sudo apt install -y {{ .software.linux.apts | sortAlpha | uniq | join " " }}
-
-{{ range .software.linux.snaps -}}
-sudo snap install {{ . }}
-{{ end -}}
 {{ end -}}

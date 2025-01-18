@@ -3,7 +3,7 @@
 set -eufo pipefail
 gum log -sl debug "$(basename "$0")"
 
-{{ if not .host.headless }}
+{{ if not .host.is_headless }}
 gum log -sl info "looking for bun"
 if [ $(command -v bun) ]; then
 	gum log -sl info "bun already installed: $(bun --version)"

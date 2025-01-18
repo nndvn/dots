@@ -3,7 +3,7 @@
 set -eufo pipefail
 gum log -sl debug "$(basename "$0")"
 
-{{ if .host.headless -}}
+{{ if .host.is_headless -}}
 gum log -sl info "looking for docker"
 if [ $(command -v docker) ]; then
     gum log -sl info "docker already installed: $(docker --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')"

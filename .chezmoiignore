@@ -1,4 +1,4 @@
-{{ if ne .chezmoi.os "darwin" -}}
+{{ if ne .host.distro.family "darwin" -}}
 .brewfile
 .brew-aliases
 .chezmoiscripts/darwin/**
@@ -9,15 +9,16 @@
 .zprofile
 {{ end -}}
 
-{{ if ne .chezmoi.os "linux" -}}
+{{ if ne .host.distro.family "linux" -}}
 .chezmoiscripts/linux/**
 {{ end -}}
 
-{{ if .host.headless -}}
+{{ if or .host.is_headless .host.is_ephemeral -}}
 .gnupg/sshcontrol
 .ssh/config
 .gitconfig
 {{ end -}}
 
 install.sh
+install.bak.sh
 README.md

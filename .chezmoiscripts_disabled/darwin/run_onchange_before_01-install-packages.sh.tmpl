@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -eufo pipefail
+gum log -sl debug "$(basename "$0")"
+
+brew cleanup && brew update && brew upgrade
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range .software.brew.taps | sortAlpha | uniq -}}
+tap {{ . | quote | replace " " "\", \"" }}
+{{ end -}}
+{{ range .software.brew.formulae | sortAlpha | uniq -}}
+brew {{ . | quote }}
+{{ end -}}
+{{ range .software.brew.casks | sortAlpha | uniq -}}
+cask {{ . | quote }}
+{{ end -}}
+EOF
