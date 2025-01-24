@@ -11,7 +11,8 @@ ensure_gpg() {
     # command -v gpg &>/dev/null || gum log --structured --time rfc3339 --level error "GPG is not installed"
 
     # Create GPG home directory if it doesn't exist
-    [ ! -d "$GPG_HOME" ] && gpg -k
+    # [ ! -d "$GPG_HOME" ] && gpg -k
+    gpg -k
 }
 
 main() {
