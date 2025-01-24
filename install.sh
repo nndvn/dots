@@ -103,7 +103,7 @@ install_packages() {
             export HOMEBREW_NO_INSTALL_CLEANUP=1
 
             # install all packages including chezmoi via homebrew
-            brew install --quite zsh git gnupg gum chezmoi
+            brew install --quiet zsh git gnupg gum chezmoi
             ;;
 
         debian)

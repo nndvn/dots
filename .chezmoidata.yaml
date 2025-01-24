@@ -13,11 +13,12 @@ software:
       - git
       - gitleaks
       - gnupg
-      - oven-sh/bun/bun
+      - gum
       - pass
       - pinentry-mac
       - volta
       - zsh
+      - oven-sh/bun/bun
     casks:
       - balenaetcher
       - brave-browser
@@ -33,8 +34,8 @@ software:
       - visual-studio-code
       - vlc
       - warp
-      # - yubico-authenticator
-      # - yubico-yubikey-manager
+      - yubico-authenticator
+      - yubico-yubikey-manager
       - zed
   linux:
     dpkgs:

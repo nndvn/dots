@@ -1,0 +1,14 @@
+# strict error handling
+set -eufo pipefail
+IFS=$'\n\t'
+
+# logging function
+log() {
+    local level=$1
+    shift
+    if command -v gum >/dev/null 2>&1; then
+        gum log --structured --time rfc3339 --level "$level" "$@"
+    else
+        echo "[$level] $*" >&2
+    fi
+}
