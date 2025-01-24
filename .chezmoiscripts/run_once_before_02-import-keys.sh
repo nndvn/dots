@@ -8,7 +8,7 @@ readonly REQUIRED_VARS=("BACKUP_MEDIA" "KEY_ID")
 readonly GPG_HOME="${HOME}/.gnupg"
 
 ensure_gpg() {
-    command -v gpg &>/dev/null || gum log --structured --time rfc3339 --level error "GPG is not installed"
+    # command -v gpg &>/dev/null || gum log --structured --time rfc3339 --level error "GPG is not installed"
 
     # Create GPG home directory if it doesn't exist
     [ ! -d "$GPG_HOME" ] && gpg -k
